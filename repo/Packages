@@ -12,17 +12,3 @@ SHA256: 4d85b2142584d7e1850f0219ba9844050dd25b7c2dd0ced251b5c71892cd61c9
 SHA512: e0b3b228bd4b0258dc6915a30aa4659019eda74c3df1fe5b3805d529cf5a1a389649da4e33b3c77f75af29c093ad460ef4cb568f5b4882ddef542ecc2bc8469c
 Description: Pacote de testes empacotado para Debian 9
 
-Package: core-network
-Architecture: amd64
-Version: 4.8-1~test
-Priority: optional
-Maintainer: eu mesmo
-Depends:
-Filename: ./core-network_4.8-1~test_amd64.deb
-Size: 1136898
-MD5sum: dde3b7e3ba21faed0ee68c3c0cb0925d
-SHA1: 62083cb73819f137791cf32d5e2208ea4ba9df2d
-SHA256: 9ccc1bd5ea7bf99415a69364aa333255e27247e26c42ec12c8e347056211f19c
-SHA512: 09b12a76dd1ad5711eb47548690e43b03a3169147ad799b292c2eab24c090d5d6094671af7db80f44bbdbe1e59ab9c61d3d8a8bcac0e7b671a5208c0fa57edf7
-Description: Pacote do core-4.8 empacotado para Debian 9
-
