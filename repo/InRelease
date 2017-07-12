@@ -1,35 +1,54 @@
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA256
 
-Date: Tue, 11 Jul 2017 23:14:28 +0000
-MD5Sum:
- a44a5501560e86bd6b930240f6db4b80              534 Packages
- 724e9b974970d7bb1d82f72a3e053e79              413 Packages.bz2
- 2bc59fcffbf750cfa963ac65af402e2e              389 Packages.gz
- bd421ffe4740b5c612ed2dd208f2681b               38 Release
-SHA1:
- 72d06794edbd4def25b688db2bc4250390fbad87              534 Packages
- 17dfc0ebe1f5581b7777874556232a15f2c84c58              413 Packages.bz2
- df5646dcf79b0b941298fe77f73c0fe13708dab1              389 Packages.gz
- 59698e2046ad53085c7516587a0d0709573ec469               38 Release
-SHA256:
- e848de0f84f5b44334651b1cfe353dd90ba77955f65e9719d6c25c952551f2bd              534 Packages
- 05275e6e0ffe432d346e10e17392456209c5144286b30a97860eb1eabedd5c33              413 Packages.bz2
- 1e6fbd16f8fe9a887a8124b73176239a9bb04b87d04333064f021d7675864d2f              389 Packages.gz
- 9da4e9312d363624d3e3073c6b9a8c7ad136613bc85d95cf1cbf7eaa6ac3df7b               38 Release
-SHA512:
- 7bef9a176a1beae1ca1c3b043d82b458fd1fdfe71a277f4ca8863d98ba4d5e049a8b58a01b492e2eb64d7521cbd939d0428b52e69d0cd6e592dd3ff42693248c              534 Packages
- 81dccbc829705f3d5f4ebec0982908f61ab76c68c2e5f1b4a450a162c31332fea4b26ebdefbfeae7b58856fa4a44245d3cdf81c805030b2ad4a1fef0666e9892              413 Packages.bz2
- 7f6f3f941fac0003a0699b9cbec571cc520f6cf34b7df0bc6d88d8237d9c537ab46afcde3bcea024d72cb37dc231653056d0a14cd4ebece24c9b754e91f19549              389 Packages.gz
- 449835787d890b3730382833b985194f59625e7b24e8dca0c6b4f746dc957018db1950fbc251107946f942f9e2da6f595dda853aeea104c9062dee3bf30253a0               38 Release
+Uso: apt-ftparchive [opções] comando
+Comandos: packages caminho_binário [arquivo_override [prefixo_caminho]]
+          sources caminho_fonte [arquivo_override [prefixo_caminho]]
+          contents caminho
+          release caminho
+          generate config [grupos]
+          clean config
+
+O apt-ftparchive gera arquivos de índice para repositórios Debian. Ele
+dá suporte a muitos estilos de geração, desde totalmente automatizadas até
+substitutos funcionais para o dpkg-scanpackages e o dpkg-scansources
+
+O apt-ftparchive gera arquivos Package a partir de uma árvore de .debs.
+O arquivo Package contém o conteúdo de todos os campos controle de
+cada pacote bem como o hash MD5 e o tamanho do arquivo. Há suporte para
+um arquivo override para forçar o valor da prioridade ("Priority") e a
+a seção ("Section").
+
+Similarmente, o apt-ftparchive gera arquivos Sources a partir de uma
+árvore de .dscs. A opção --source-override pode ser usada para
+especificar um arquivo override de fontes.
+
+Os comandos 'packages' e 'sources' deverão ser executados na raiz da
+árvore. Caminho_Binário deverá apontar para a base de procura recursiva
+e o arquivo override deverá conter as "flags override". Caminho_Prefixo é
+anexado aos campos do nome do arquivo se estiverem presentes. Exemplo de
+uso do repositório Debian:
+   apt-ftparchive packages dists/potato/main/binary-i386/ > \
+               dists/potato/main/binary-i386/Packages
+
+Opções:
+  -h    Este texto de ajuda
+  --md5 Controla a geração de MD5
+  -s=?  Arquivo fonte ("source") override
+  -q    Quieto
+  -d=?  Seleciona o banco de dados de caching opcional
+  --no-delink Habilita o modo de depuração "delinking"
+  --contents  Controla a geração do arquivo de conteúdo
+  -c=? Lê o arquivo de configuração especificado.
+  -o=? Define uma opção de configuração arbitrária
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEE0K3cgmUOfbxaEqRDsyLUoVER5ngFAlllW/IACgkQsyLUoVER
-5nibOAgAtQS8UOE3Fh7mT2f6gajtqiX05O38XWQCNwNz9jMzQpPIGrSBJIum607H
-C6ysB5QHWarcEyddc9z5lBwgNx9jNqHKpqjxNCxj2HlbUKFu7Ul+uEnN+MXZ0YPE
-iMEWUnkhMINc5GbY3XSLhKvHFYh/UlY7vRt8Vc2wiVu0BGt88cb+gQGMClz4d5Au
-ELUeAhPqaNLZopt1MX/+xvi1PJ5fvpJjAFF9pEM6d+qOynV/P0/+HjzVHh0KX/Xb
-EZ9mrkufyiGCLv4MJTLWrBwlasxiTUzLOatsBS9AjmoT3d7CuhBLz7gUsqT5VFrV
-8S4MPQh7ub017CY1CdWL4brWrRWFvQ==
-=N2i6
+iQEzBAEBCAAdFiEE0K3cgmUOfbxaEqRDsyLUoVER5ngFAlllfysACgkQsyLUoVER
+5ngTWgf9EPYea0m4uU0bFZIUUwCgTgBgwQ+51iiqqk2RzVLduPZ3ay2SWrn39Yzg
+cd+sJzIGJ3EOODXOx84YQptsWZBDBq9zqRgaWJzQ4kjphUmWt76YvQ+37wCL8BQT
+GHPSFSosaa6s6RQH6tP/VuKqzHBYwBfDwOxtJhaMU/a78v9MyuQIGMceBCTXfeQ9
+H5WLOL2YeBKeuHvdDiJEY4oidgzO8t+5xAevA6XpmACdzsoFy8U5QZ7IZ6lSDJNk
+jf7SkfhNnH3MSjMuO2xPY/KWMBXsl81cNR4SvmYx9EJ9QZZyjMBXFqGQYW85ln0w
+PtAofFBd462pVE/7I7YLMpSE8VojSw==
+=KbP9
 -----END PGP SIGNATURE-----

@@ -1,21 +1,40 @@
-Date: Tue, 11 Jul 2017 23:26:49 +0000
-MD5Sum:
- 6be2340c4d012f8155e58f7d566e63f5              534 Packages
- e3d7fc389903689619a298874b123486              417 Packages.bz2
- 4c86e656582209dc12d5ad5c8f0c38ae              387 Packages.gz
- aeea2142fdfe029f414a264eee76df57               38 Release
-SHA1:
- 79bf3dc7599790a7e6a30a6629671160cca39452              534 Packages
- 90e4d592962964bf124d7ccb08e7a69b6177c834              417 Packages.bz2
- c564387f38ad09bd01057c6ce0d4b21dde919b97              387 Packages.gz
- 8e1a3a05518cc054891147e794c9db21e3c69600               38 Release
-SHA256:
- a70a75594460610d26f6577f47e91210a51922525df18b2c14f76a953602c666              534 Packages
- 90588b309f971cb4c6e50135209560871147fcd79d0e12e0bcc7d531c87a7cd6              417 Packages.bz2
- 7e4255ea0a77150b2c0a44153cb5cd5b1bc83ceeaac5ff4a92b32ccf2f45079f              387 Packages.gz
- 2409a7c64350cddd6096abd25b0503a395c20da1d01ee9f95b03f1d2552f072f               38 Release
-SHA512:
- 8686e6b9dd11e147b7c9874e3c37fafc0ee5eb7b5a998a027ea54b75ed68a121540c5bc5bea8eaa52ca1c00601664823bd047820086ce0c889404ef9ce36986d              534 Packages
- b590cc7f78de7406997167e78140da453bf5f4e59bb3917aa46c1ff78fcda87fb5b7f26aa20c68c3095e937a56f6c655ce88e3dce65160cbf856f83c01362851              417 Packages.bz2
- b0ea1b73fa0d6303313809b3e80e5d26044d0a3dc63669ccc04740858108542d6654a1d527f585154ba995841a1577208ce93843cbd728256897d220d8ae95d5              387 Packages.gz
- 988e66af8ba03fe056d1616a24b38d00384c64e57b8ef61958be84821834d2ec127f4fe34ca2d02e7d4d327a937ac93d3e8f610eb75a089ed65253c42e189ecb               38 Release
+Uso: apt-ftparchive [opções] comando
+Comandos: packages caminho_binário [arquivo_override [prefixo_caminho]]
+          sources caminho_fonte [arquivo_override [prefixo_caminho]]
+          contents caminho
+          release caminho
+          generate config [grupos]
+          clean config
+
+O apt-ftparchive gera arquivos de índice para repositórios Debian. Ele
+dá suporte a muitos estilos de geração, desde totalmente automatizadas até
+substitutos funcionais para o dpkg-scanpackages e o dpkg-scansources
+
+O apt-ftparchive gera arquivos Package a partir de uma árvore de .debs.
+O arquivo Package contém o conteúdo de todos os campos controle de
+cada pacote bem como o hash MD5 e o tamanho do arquivo. Há suporte para
+um arquivo override para forçar o valor da prioridade ("Priority") e a
+a seção ("Section").
+
+Similarmente, o apt-ftparchive gera arquivos Sources a partir de uma
+árvore de .dscs. A opção --source-override pode ser usada para
+especificar um arquivo override de fontes.
+
+Os comandos 'packages' e 'sources' deverão ser executados na raiz da
+árvore. Caminho_Binário deverá apontar para a base de procura recursiva
+e o arquivo override deverá conter as "flags override". Caminho_Prefixo é
+anexado aos campos do nome do arquivo se estiverem presentes. Exemplo de
+uso do repositório Debian:
+   apt-ftparchive packages dists/potato/main/binary-i386/ > \
+               dists/potato/main/binary-i386/Packages
+
+Opções:
+  -h    Este texto de ajuda
+  --md5 Controla a geração de MD5
+  -s=?  Arquivo fonte ("source") override
+  -q    Quieto
+  -d=?  Seleciona o banco de dados de caching opcional
+  --no-delink Habilita o modo de depuração "delinking"
+  --contents  Controla a geração do arquivo de conteúdo
+  -c=? Lê o arquivo de configuração especificado.
+  -o=? Define uma opção de configuração arbitrária
